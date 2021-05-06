@@ -126,9 +126,6 @@ $roleExecute=mysqli_query($connection, "SELECT * FROM roles");
             <label for="nation" class="labels">Nationality</label>
             <select name="nationality" id="nation">
                 <option value="0">Select your nationality</option>
-                <!-- <option value="1">Rwandese</option>
-                <option value="2">English</option>
-                <option value="3">American</option> -->
             <?php
                 while($rows = mysqli_fetch_array($execute)){?>
                 <option value="<?=$rows['countryID']?>"><?=$rows['countryName']?></option>
@@ -137,9 +134,6 @@ $roleExecute=mysqli_query($connection, "SELECT * FROM roles");
             <label for="role" class="labels">Roles</label>
             <select name="roles" id="role">
                 <option value="0">Select role</option>
-                <!-- <option value="1">Rwandese</option>
-                <option value="2">English</option>
-                <option value="3">American</option> -->
             <?php
                 while($rows = mysqli_fetch_array($roleExecute)){?>
                 <option value="<?=$rows['roleId']?>"><?=$rows['role']?></option>
