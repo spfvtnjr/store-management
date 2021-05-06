@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!$_SESSION['userid']){
+    header("Location:login.php");
+ }
 require "./../connection.php";
 $displayUser = "SELECT u.userId, u.firstName, u.lastName, u.telephone, u.gender, u.username, u.email, ctr.countryName as nationality FROM stk_users u, countries ctr WHERE u.nationality = ctr.countryId";
 $execute = mysqli_query($connection, $displayUser);?>

@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include("../connection.php");
 $username = trim($_POST['username']);
 $user_password = trim($_POST['password']);
@@ -12,6 +13,7 @@ if(mysqli_fetch_row($check) == 0){
 echo "Invalid Username or Password";
 }else{
 While(list($userid,$firstName,$lastName,$gender,$telephone,$email,$username,$roleId,$role)=mysqli_fetch_array($check)){
+$_SESSION['userid']=$userid;
 ?>
 <div class=”home”>
 Welcome <?=$firstName."(".$role.")"?>

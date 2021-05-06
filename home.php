@@ -8,7 +8,6 @@ $_SESSION['MAC']=$MAC;
 $browser = get_browser();
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 function getOS() { 
-
     global $user_agent;
 
     $os_platform  = "Unknown OS Platform";
@@ -71,13 +70,21 @@ function getBrowser() {
 
     return $browser;
 }
-
-
+$userid=$_SESSION['userid'];
+if(!$userid){
+   header("Location:Users/login.php");
+}
 $user_os        = getOS();
 $user_browser   = getBrowser();
-
-$_SESSION['user_os']=$user_os;
-$_SESSION['user_browser']=$user_browser;
+include 'connection.php';
+$sqlInsert = "INSERT INTO userdeviceinfo(userId, macAddress, ipAddress , os ,browser) VALUES('$userid','$MAC','$ipAddr','$user_os', '$user_browser')";
+$execute = mysqli_query($connection, $sqlInsert);
+if($execute){
+   echo "saving user device info welldone";
+}
+else{
+    echo "Couldn't save user device info.".$connection->error;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
