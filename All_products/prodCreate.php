@@ -13,7 +13,6 @@ $connection = mysqli_connect($host, $user, $db_password, $database);
 if(!$connection){
    echo 'Connection failed'.mysqli_connect_error();
 }
-
 $query = "INSERT INTO stk_products(product_Name, brand, supplier_phone, supplier) VALUES ('$productName', '$brand', '$telephone', '$supplier');";
 $exec = mysqli_query($connection, $query);
 if(!$exec){
