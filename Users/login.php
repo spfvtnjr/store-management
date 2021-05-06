@@ -50,6 +50,7 @@
             border-color: #fff;
             border-radius: 5px;
             font-size: medium;
+            
             cursor: pointer;
         }
     </style>
@@ -61,7 +62,7 @@
         <input type="text" name="username" class="fields" id="username" placeholder="Enter your username"><br>
         <label for="passwd" class="labels">Password</label>
         <input type="password" name="password" class="fields" id="passwd" placeholder="Enter your password"><br>
-        <input type="submit" value="Register">
+        <input type="submit" value="Login">
     </form>
 </body>
 </html>

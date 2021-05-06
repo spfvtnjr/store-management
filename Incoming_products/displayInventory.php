@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!$_SESSION['userId']){
+    header("Location:../Users/login.php");
+ }
 require "./../connection.php";
     $selectProduct = "SELECT pr.productId, pr.product_Name, inv.quantity FROM stk_products pr, stk_inventory inv WHERE pr.productId=inv.productId";
     $fetchProduct = mysqli_query($connection, $selectProduct);?>
