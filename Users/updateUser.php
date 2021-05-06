@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!$_SESSION['userid']){
+    header("Location:login.php");
+ }
 require "./../connection.php";
 $Id = $_GET["Id"];
 $user = mysqli_query($connection, "SELECT * FROM stk_users WHERE userId='$Id'");

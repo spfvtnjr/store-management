@@ -59,11 +59,11 @@
 <body>
     <form action="./authenticate.php" method="post">
     <h2>Login</h2>
-        <label for="mail" class="labels">Email</label>
-        <input type="email" name="email" class="fields" id="mail" placeholder="Enter a valid email"><br>
+        <label for="username" class="labels">Username</label>
+        <input type="text" name="username" class="fields" id="username" placeholder="Enter a your username"><br>
         <label for="passwd" class="labels">Password</label>
         <input type="password" name="password" class="fields" id="passwd" placeholder="Enter your password"><br>
-        <input type="submit" value="Register">
+        <input type="submit" value="Login">
     </form>
 </body>
 </html>

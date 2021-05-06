@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!$_SESSION['userid']){
+    header("Location:./Users/login.php");
+ }
 require "./../connection.php";
 $product= $_POST["productName"];
 $quantity = $_POST["quantity"];
