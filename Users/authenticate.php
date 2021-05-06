@@ -14,6 +14,7 @@ echo "Invalid Username or Password";
 }else{
 While(list($userid,$firstName,$lastName,$gender,$telephone,$email,$username,$roleId,$role)=mysqli_fetch_array($check)){
 $_SESSION['userid']=$userid;
+$_SESSION['roleId']=$roleId;
 ?>
 <div class=”home”>
 Welcome <?=$firstName."(".$role.")"?>
