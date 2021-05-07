@@ -84,6 +84,7 @@ $execute = mysqli_query($connection, $displayUser);?>
 <header>
         <nav class="header">
             <ul>
+                <li><a href="./../home.php">Home</a></li>
                 <li><a href="./user.php">Add User</a></li>
                 <li><a href="./../All_products/allProducts.php">Add product</a></li>
                 <li><a href="./../All_products/displayProduct.php">Display products</a></li>

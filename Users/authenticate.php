@@ -1,8 +1,5 @@
 <?php 
 session_start();
-// if(!$_SESSION['userId']){
-//     header("Location:login.php");
-//  }
 include("../connection.php");
 $username = trim($_POST['username']);
 $user_password = trim($_POST['password']);
@@ -17,7 +14,7 @@ while($row=mysqli_fetch_assoc($query)){
     $userId=$row["userId"];
     $roleId=$row["roleId"];   
 }
-$roleQuery=mysqli_query($connection,"SELECT role FROM roles where roleId='$roleId' ");
+$roleQuery=mysqli_query($connection,"SELECT role FROM roles where roleId='$roleId'");
 while($rolesResult=mysqli_fetch_assoc($roleQuery)){
     $roleName=$rolesResult["role"];
 }

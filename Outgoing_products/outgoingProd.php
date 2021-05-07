@@ -102,6 +102,7 @@ $query = mysqli_query($connection, "SELECT * FROM stk_products");
     <header>
         <nav class="header">
             <ul>
+                <li><a href="./../home.php">Home</a></li>
                 <li><a href="./../Users/user.php">Add User</a></li>
                 <li><a href="./../Users/displayUser.php">Display users</a></li>
                 <li><a href="./../All_products/prodCreate.php">Add product</a></li>

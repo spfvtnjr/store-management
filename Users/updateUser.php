@@ -5,7 +5,8 @@ if(!$_SESSION['userId']){
  }
 require "./../connection.php";
 $Id = $_GET["Id"];
-$user = mysqli_query($connection, "SELECT * FROM stk_users WHERE userId='$Id'");
+$sql="SELECT * FROM stk_users WHERE userId='$Id'";
+$updateUser = mysqli_query($connection,$sql);
 ?>
 <head>
  <style>
@@ -40,13 +41,16 @@ $user = mysqli_query($connection, "SELECT * FROM stk_users WHERE userId='$Id'");
             width: 25em;
         }
         input[type="submit"]{
+            height: 2.5em;
             width: 10em;
-            padding: 5px;
+            line-height: 2.5em;
             background-color: rgb(0, 53, 83);
             font-weight: 500;
-            color: #000;
-            border-color: #000;
+            color: #fff;
+            border: 2px solid #fff;
+            border-radius: 5px;
             font-size: medium;
+            cursor: pointer;
         }
         /* input, label{
             display: block;
@@ -65,27 +69,39 @@ $user = mysqli_query($connection, "SELECT * FROM stk_users WHERE userId='$Id'");
 </head>
 <?php
 require "./../connection.php";
-$countries = "SELECT * FROM db_rca.countries";
+$countries = "SELECT countryName, nationality FROM countries, stk_users WHERE countries.countryID = stk_users.nationality";
 $execute = mysqli_query($connection, $countries);
 ?>
 <body>
     <div class="main">
         <form action="./userUpdate.php" method="POST">
-            <h2>Join Us</h2>
+            <h2>Update User</h2>
             <?php
-            while($row = mysqli_fetch_assoc($user)){}
+            while($row=mysqli_fetch_assoc($updateUser)){
             ?>
             <label for="fname" class="labels fname">First Name</label>
-            <input type="text" name="firstName" class="fname fields" id="fname" placeholder="Enter your first name" min="2" max="100" value="<?=$row['firstName']?>"><br>
+            <input type="text" name="firstName" class="fname fields" id="fname" min="2" max="100" value="<?=$row['firstName']?>"><br>
             <label for="lname" class="labels lname">Last Name</label>
-            <input type="text" name="lastName" class="lname fields" id="lname" placeholder="Enter your last name" min="2" max="100" value="<?=$row['lastName']?>"><br>
+            <input type="text" name="lastName" class="lname fields" id="lname"  min="2" max="100" value="<?=$row['lastName']?>"><br>
             <label for="phone" class="labels phone">Telephone</label>
-            <input type="number" name="telephone" class="phone fields" id="phone" placeholder="Enter your phone number" value="<?=$row['telephone']?>"><br>
+            <input type="number" name="telephone" class="phone fields" id="phone" value="<?=$row['telephone']?>"><br>
             <label for="gender" class="labels gender fields">Gender</label>
-            <input type="radio" class="special gender fields"  value="male" name="gender" id="male" checked>
-            <label for="male">Male</label>
-            <input type="radio" class="special gender fields" value="female" name="gender" id="female">
-            <label for="female">Female</label><br>
+            <?php
+                if($row["gender"]="male"){
+            ?>
+                <input type="radio" class="special gender fields"  value="male" name="gender" id="male" checked>
+                <label for="male">Male</label>
+                <input type="radio" class="special gender fields" value="female" name="gender" id="female">
+                <label for="female">Female</label><br>
+            <?php }
+            else{?>
+                <input type="radio" class="special gender fields"  value="male" name="gender" id="male">
+                <label for="male">Male</label>
+                <input type="radio" class="special gender fields" value="female" name="gender" id="female" checked>
+                <label for="female">Female</label><br>
+            <?php }
+                
+            ?>
             <label for="nation" class="labels">Nationality</label>
             <select name="nationality" id="nation">
                 <option value="0">Select your nationality</option>
@@ -98,11 +114,18 @@ $execute = mysqli_query($connection, $countries);
                 <?php } ?>
             </select><br>
             <label for="username" class="labels">Username</label>
-            <input type="text" name="username" class="fields" id="username" placeholder="Enter your username"><br>
+            <input type="text" name="username" class="fields" id="username" value="<?=$row['username']?>" readonly><br>
             <label for="mail" class="labels">Email</label>
-            <input type="email" name="email" class="fields" id="mail" placeholder="Enter a valid email"><br>
-            <label for="passwd" class="labels">Password</label>
-            <input type="password" name="password" class="fields" id="passwd" placeholder="Enter your password"><br>
+            <input type="email" name="email" class="fields" id="mail" value="<?=$row['email']?>" readonly><br>
+            <label for="passwd" class="labels">Old Password</label>
+            <input type="password" name="oldPassword" class="fields" id="passwd" title="Give old password"><br>
+            <label for="newpasswd" class="labels">New Password</label>
+            <input type="password" name="newPassword" class="fields" id="newpasswd" title="New password"><br>
+            <label for="cnewpassword" class="labels">Confirm Password</label>
+            <input type="password" name="cnewPassword" class="fields" id="cnewpasswd" title="Confirm new password"><br>
+            <?php 
+                }
+            ?>
             <input type="submit" value="Register">
         </form>
     </div>

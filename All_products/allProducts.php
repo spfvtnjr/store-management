@@ -117,7 +117,8 @@ if(!$_SESSION['userId']){
 <header>
         <nav class="header">
             <ul>
-               <li><a href="./../Users/user.php">Add User</a></li>
+                <li><a href="./../home.php">Home</a></li>
+                <li><a href="./../Users/user.php">Add User</a></li>
                 <li><a href="./../Users/displayUser.php">Display users</a></li>
                 <li><a href="./../All_products/displayProduct.php">Display products</a></li>
                 <li><a href="./../Incoming_products/inventory.php">Register inventory</a></li>
