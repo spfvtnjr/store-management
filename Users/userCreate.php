@@ -22,7 +22,7 @@ require "./../connection.php";
        require "./displayUser.php";
     }
     else{
-        echo "Couldn't save".mysqli_error();
+        echo "Couldn't save".mysqli_error($connection);
     }
 }
 ?>

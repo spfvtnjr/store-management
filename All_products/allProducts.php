@@ -3,6 +3,9 @@ session_start();
 if(!$_SESSION['userId']){
     header("Location:../Users/login.php");
  }
+ elseif ($_SESSION['roleName']!="Manager") {
+    header("Location:./../Users/norights.php");
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">

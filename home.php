@@ -1,8 +1,7 @@
 <?php
 session_start();
 if(!$_SESSION['userId']){
-    header("Location:/users/login.php");
-    // echo $_SESSION['userId'];
+    header("Location:./Users/login.php");
  }
 $ipAddr=$_SERVER['REMOTE_ADDR'];
 $_SESSION['ipAddr']=$ipAddr;
@@ -80,12 +79,6 @@ include 'connection.php';
 $userId=$_SESSION['userId'];
 $sqlInsert = "INSERT INTO userdeviceinfo(userId, macAddress, ipAddress , os ,browser) VALUES('$userId','$MAC','$ipAddr','$user_os', '$user_browser')";
 $execute = mysqli_query($connection, $sqlInsert);
-if($execute){
-   echo "saving user device info welldone";
-}
-else{
-    echo "Couldn't save user device info.".$connection->error;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

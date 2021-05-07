@@ -1,7 +1,7 @@
 <?php
 $host = "localhost";
 $user = "root";
-$db_password="Borntopraise@10";
+$db_password="*souvenir#";
 $database = "stock";
 $connection = mysqli_connect($host, $user, $db_password, $database);
 if(!$connection){

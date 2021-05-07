@@ -3,6 +3,9 @@ session_start();
 if(!$_SESSION['userId']){
     header("Location:login.php");
  }
+elseif ($_SESSION['roleName']!="Administrator") {
+    header("Location:norights.php");
+} 
 ?>
 
 <!DOCTYPE html>
