@@ -1,6 +1,10 @@
 <?php
+session_start();
+if(!$_SESSION['userId']){
+    header("Location:../Users/login.php");
+ }
 require "./../connection.php";
-    $selectProduct = "SELECT pr.productId, pr.product_Name, inv.quantity FROM stk_products pr, stk_inventory inv";
+    $selectProduct = "SELECT pr.productId, pr.product_Name, inv.quantity FROM stk_products pr, stk_inventory inv WHERE pr.productId=inv.productId";
     $fetchProduct = mysqli_query($connection, $selectProduct);?>
     <head>
         <style>
@@ -25,6 +29,7 @@ require "./../connection.php";
             background-color: rgb(0, 53, 83);
             padding:20px;
             border: none;
+            color: #fff;
         }
         tbody td{
             padding: 16px;
@@ -82,7 +87,7 @@ require "./../connection.php";
             <th>Delete</th>
             <th>Add quantity</th>
         </tr>
-        </body>
+        
         <?php
         while($rows = mysqli_fetch_assoc($fetchProduct)){
             $id = $rows["productId"];
@@ -96,3 +101,4 @@ require "./../connection.php";
             </tr>
         <?php }?>
     </table>
+    </body>

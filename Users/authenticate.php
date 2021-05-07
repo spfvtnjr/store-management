@@ -1,24 +1,37 @@
 <?php 
 session_start();
+// if(!$_SESSION['userId']){
+//     header("Location:login.php");
+//  }
 include("../connection.php");
 $username = trim($_POST['username']);
 $user_password = trim($_POST['password']);
 if( ($username =="") || ($user_password =="") ){
 echo  "Username and Password are required";
 }else{
-$hashed =  hash('SHA512',$user_password);
-$query="SELECT mu.userId,mu.firstName, mu.lastName,mu.gender,mu.telephone,mu.email,mu.username,r.roleId,r.role from stk_users mu INNER JOIN roles r ON mu.roleId=r.roleId WHERE mu.username='$username' AND mu.passwd='$hashed'";
-$check=mysqli_query($connection,$query) or die("unable due to error: ".$connection->error);
-if(mysqli_fetch_row($check) == 0){
-echo "Invalid Username or Password";
-}else{
-While(list($userid,$firstName,$lastName,$gender,$telephone,$email,$username,$roleId,$role)=mysqli_fetch_array($check)){
-$_SESSION['userid']=$userid;
-$_SESSION['roleId']=$roleId;
-?>
-<div class=”home”>
-Welcome <?=$firstName."(".$role.")"?>
-<a href="changepassword.php?userid=<?=$userid?>">Change Password</a>
-</div>
-<?php }}}
+$hash=hash("SHA512",$user_password);
+$userId=$currentPassword=$roleName=$roleId="";
+$query=mysqli_query($connection, "SELECT * FROM stk_users where username='$username'");
+while($row=mysqli_fetch_assoc($query)){
+    $currentPassword=$row["passwd"];
+    $userId=$row["userId"];
+    $roleId=$row["roleId"];   
+}
+$roleQuery=mysqli_query($connection,"SELECT role FROM roles where roleId='$roleId' ");
+while($rolesResult=mysqli_fetch_assoc($roleQuery)){
+    $roleName=$rolesResult["role"];
+}
+if(!mysqli_num_rows($query)){
+    echo "Invalid username or password";
+}
+if($hash!=$currentPassword){
+   echo "Invalid username or password";
+}
+else{
+    $_SESSION['userId']=$userId;
+    $_SESSION['roleName']=$roleName;
+    $_SESSION["roleId"]=$roleId;
+    header("Location:./../home.php");
+}
+}
 ?>

@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!$_SESSION['userId']){
+    header("Location:../Users/login.php");
+ }
 require "./../connection.php";
 // $Id = $_GET["Id"];
 $product = mysqli_query($connection, "SELECT * FROM stk_products");

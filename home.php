@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(!$_SESSION['userId']){
+    header("Location:/users/login.php");
+    // echo $_SESSION['userId'];
+ }
 $ipAddr=$_SERVER['REMOTE_ADDR'];
 $_SESSION['ipAddr']=$ipAddr;
 $MAC = exec('getmac');
@@ -70,14 +74,11 @@ function getBrowser() {
 
     return $browser;
 }
-$userid=$_SESSION['userid'];
-if(!$userid){
-   header("Location:Users/login.php");
-}
 $user_os        = getOS();
 $user_browser   = getBrowser();
 include 'connection.php';
-$sqlInsert = "INSERT INTO userdeviceinfo(userId, macAddress, ipAddress , os ,browser) VALUES('$userid','$MAC','$ipAddr','$user_os', '$user_browser')";
+$userId=$_SESSION['userId'];
+$sqlInsert = "INSERT INTO userdeviceinfo(userId, macAddress, ipAddress , os ,browser) VALUES('$userId','$MAC','$ipAddr','$user_os', '$user_browser')";
 $execute = mysqli_query($connection, $sqlInsert);
 if($execute){
    echo "saving user device info welldone";
@@ -189,6 +190,9 @@ else{
     <div class="sales">
         <a href="./Outgoing_products/outgoingProd.php" class="new">Add sale</a>
         <a href="./Outgoing_products/displayOutgoing.php" class="view">See sales</a>
+    </div>
+    <div class="new">
+        <a href="./Users/logout.php">Log out</a>
     </div>
 </div>
 </body>

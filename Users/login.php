@@ -1,5 +1,3 @@
-<?php?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,15 +50,16 @@
             border-color: #fff;
             border-radius: 5px;
             font-size: medium;
+            
             cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <form action="./authenticate.php" method="post">
+    <form action="authenticate.php" method="POST">
     <h2>Login</h2>
         <label for="username" class="labels">Username</label>
-        <input type="text" name="username" class="fields" id="username" placeholder="Enter a your username"><br>
+        <input type="text" name="username" class="fields" id="username" placeholder="Enter your username"><br>
         <label for="passwd" class="labels">Password</label>
         <input type="password" name="password" class="fields" id="passwd" placeholder="Enter your password"><br>
         <input type="submit" value="Login">

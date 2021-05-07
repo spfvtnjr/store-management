@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!$_SESSION['userid']){
+if(!$_SESSION['userId']){
     header("Location:login.php");
  }
 require "./../connection.php";

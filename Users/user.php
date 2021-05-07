@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!$_SESSION['userid']){
+if(!$_SESSION['userId']){
     header("Location:login.php");
  }
 ?>
@@ -61,8 +61,11 @@ if(!$_SESSION['userid']){
             display: block;
         } */
         .labels{
-            width: 25%;
+            width: 33.33%;
         }
+        /* .fields{
+            width: 60%;
+        } */
       input[type="email"], input[name="gender"]{
           margin-left: 3em;
       }
@@ -130,20 +133,24 @@ $roleExecute=mysqli_query($connection, "SELECT * FROM roles");
             <label for="male">Male</label>
             <input type="radio" class="special gender fields" value="female" name="gender" id="female">
             <label for="female">Female</label><br>
+            <label for="role" class="roles">Role</label>
+            <select name="role" id="role" class="fields">
+            <option value="0">What's your role</option>
+                <?php
+                    while($row=mysqli_fetch_array($roleExecute)){?>
+                        <option value="<?=$row['roleId']?>"><?=$row["role"]?></option>
+                    <?php }
+                    if(!$row){
+                        echo mysqli_error();
+                    }
+                ?>
+            </select>
             <label for="nation" class="labels">Nationality</label>
-            <select name="nationality" id="nation">
+            <select name="nationality" id="nation" class="fields">
                 <option value="0">Select your nationality</option>
             <?php
                 while($rows = mysqli_fetch_array($execute)){?>
                 <option value="<?=$rows['countryID']?>"><?=$rows['countryName']?></option>
-                <?php } ?>
-            </select><br>
-            <label for="role" class="labels">Roles</label>
-            <select name="roles" id="role">
-                <option value="0">Select role</option>
-            <?php
-                while($rows = mysqli_fetch_array($roleExecute)){?>
-                <option value="<?=$rows['roleId']?>"><?=$rows['role']?></option>
                 <?php } ?>
             </select><br>
             <label for="username" class="labels">Username</label>
@@ -151,7 +158,9 @@ $roleExecute=mysqli_query($connection, "SELECT * FROM roles");
             <label for="mail" class="labels">Email</label>
             <input type="email" name="email" class="fields" id="mail" placeholder="Enter a valid email"><br>
             <label for="passwd" class="labels">Password</label>
-            <input type="password" name="password" class="fields" id="passwd" placeholder="Enter your password"><br>
+            <input type="password" name="password" class="fields" pattern=".{6,}" id="passwd" placeholder="Enter your password"><br>
+            <label for="cpasswd" class="labels">Confirm Password</label>
+            <input type="password" name="cpassword" class="fields" pattern=".{6,}" id="cpasswd" placeholder="Enter your password"><br>
             <input type="submit" value="Register">
         </form>
     </div>
