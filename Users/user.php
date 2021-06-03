@@ -125,7 +125,7 @@ $roleExecute=mysqli_query($connection, "SELECT * FROM roles");
     <div class="main">
         <form action="userCreate.php" method="POST" enctype="multipart/form-data">
             <h2>Add User</h2>
-            <label for="fname" class="labels fname">First Name</label>
+            <label for="fname" class="labels fname" accesskey='f'>First Name</label>
             <input type="text" name="firstName" class="fname fields" id="fname" placeholder="Enter your first name" min="2" max="100"><br>
             <label for="lname" class="labels lname">Last Name</label>
             <input type="text" name="lastName" class="lname fields" id="lname" placeholder="Enter your last name" min="2" max="100"><br>
@@ -156,9 +156,9 @@ $roleExecute=mysqli_query($connection, "SELECT * FROM roles");
                 <option value="<?=$rows['countryID']?>"><?=$rows['countryName']?></option>
                 <?php } ?>
             </select><br>
-            <label for="username" class="labels">Username</label>
+            <label for="username" class="labels" accesskey='u'>Username</label>
             <input type="text" name="username" class="fields" id="username" placeholder="Enter your username"><br>
-            <label for="mail" class="labels">Email</label>
+            <label for="mail" class="labels" accesskey='m'>Email</label>
             <input type="email" name="email" class="fields" id="mail" placeholder="Enter a valid email"><br>
             <label for="passwd" class="labels">Password</label>
             <input type="password" name="password" class="fields" pattern=".{6,}" id="passwd" placeholder="Enter your password"><br>

@@ -3,7 +3,7 @@ session_start();
 if(!$_SESSION['userId']){
     header("Location:./Users/login.php");
  }
-$ipAddr=$_SERVER['REMOTE_ADDR'];
+$ipAddr= gethostbyname($_SERVER['HOST_ADDR']);
 $_SESSION['ipAddr']=$ipAddr;
 $MAC = exec('getmac');
 $MAC = strtok($MAC, ' ');

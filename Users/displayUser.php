@@ -5,12 +5,14 @@ if(!$_SESSION['userId']){
  }
 require "./../connection.php";
 $displayUser = "SELECT u.userId, u.firstName, u.lastName, u.telephone, u.gender, u.username, u.email, ctr.countryName as nationality FROM stk_users u, countries ctr WHERE u.nationality = ctr.countryId";
-$execute = mysqli_query($connection, $displayUser);?>
+$execute = mysqli_query($connection, $displayUser);
+?>
+
 <head>
     <style>
         *{
             margin: 0;
-            padding: 0;
+            padding: 0;x
             box-sizing: border-box;
         }
         :root{
@@ -124,6 +126,5 @@ $execute = mysqli_query($connection, $displayUser);?>
     </tr>
 <?php }?>
         </table>
-        <!-- <a href="./user.php">New User</a> -->
 </div>
 </body>
